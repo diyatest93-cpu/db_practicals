@@ -1,3 +1,5 @@
+home/
+accounts/
 _pycache_/
 *.pyc
 db.sqlite3
