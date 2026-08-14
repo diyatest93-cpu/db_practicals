@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color:#f6f5ff;
+        }
+        form{
+            margin-top:30px;
+            
+            width:50%;
+            margin-left:350px;
+            text-align:center;
+            border-radius:10px;
+            background-color:white;
+            box-shadow: 15px 15px 10px 5px rgba(0,0,0,0.1);
+        }
+        p{
+            margin-top:20px;
+            font-size:1.2rem;
+        }
+        input{
+            width:70%;
+            height:30px;
+        }
+        button{
+            height: 30px;width:80px;
+            background-color:blue;
+            color:white;
+            border:none;
+            border-radius:10px;
+            margin-bottom:10px
+        }
+    </style>
+</head>
+<body>
+    <form method="POST">
+        {% csrf_token %}
+
+       
+        <p>Name:</p>
+        <input type="text" name="name" value="{{data.name}}">
+        <p>Email:</p>
+        <input type="text" name="email" value="{{data.email}}">
+        <p>mobileNo:</p>
+        <input type="text" name="mobileNo" value="{{data.mobileNo}}">
+        <p>Gender:</p>
+        <input type="radio" name="gender" value="Male" {% if data.gender == "Male" %} checked{%endif%} style="height:30px; width:20px; margin-left:20px; padding-top:20px;"> Male
+        <input type="radio" name="gender" value="Female" {% if data.gender == "Female" %} checked{%endif%} style="height:30px; width:20px"  margin-left:"20px">Female
+        <p>Select City:</p>
+                <select name="city" style="width:50%; height:50px; border:1px solid navy; margin-top:10px;margin-bottom:20px; border-radius:10px; font-size:15px">
+                    <option value="hmt" {%if data.city == "hmt"%}selected{%endif%}>Himmatnagar</option>
+                    <option value="idar" {%if data.city == "idar"%}selected{%endif%}>Idar</option>
+                    <option value="surat" {%if data.city == "surat"%}selected{%endif%}>Surat</option>
+                </select><br>
+        
+
+        <button type="submit">Save</button>
+
+
+
+    </form>
+</body>
+</html>

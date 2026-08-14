@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color:#f6f5ff;
+        }
+        .main{
+            
+            height: 600px;
+            width: 700px;
+            justify-content: center;
+            text-align: center;
+            margin: 20px 250px;
+        }
+        h2{
+            margin-top: 30px;
+            color: navy;
+            text-align: center;
+            
+        }
+        .container{
+            height: 400px;
+            width: 550px;
+            
+            margin:30px  90px;
+            text-align: center;
+            padding-top: 40px;
+            background-color:white;
+            box-shadow: 15px 15px 10px 5px rgba(0,0,0,0.1);
+            border-radius: 20px;
+        }
+        .group{
+            display: flex;
+            margin: 10px 20px;
+           
+        }
+        p{
+            color:navy;
+            font-size: 20px;
+
+        }
+        input{
+            height: 30px;
+            width: 60%;
+            border: 0.5px solid navy;
+            border-radius: 5px;
+            margin-top: 18px;
+            margin-left: 20px;
+            
+        }
+        input:focus{
+            border-color: navy;
+            box-shadow: 0 0 5px #0d6efd;
+            outline: none;
+        }
+        #p1{
+            height: 16px;
+            width: 20px;
+            color:navy;
+            margin-top: 25px;
+        }
+        #p2{
+            height: 16px;
+            width: 20px;
+            color:navy;
+            margin-top: 25px;
+            
+        }
+        button{
+            height: 30px;
+            width: 90px;
+            background-color: rgba(0, 0, 255, 0.911);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-size: 15px;
+        }
+        button:hover{
+            background-color: rgba(0, 0, 255, 0.822);
+        }
+        table{
+            margin-top:150px;
+        }
+        
+    </style>
+</head>
+<body>
+    
+    <div class="main">
+    <h2>Simple Form</h2>
+    <form method="POST" action="{% url 'index' %}">
+        {% csrf_token %}
+        <div class="container">
+            <div class="group">
+                <p>Enter Name:</p>
+                <input type="text" name="name" id="name" required>
+            </div>
+            <div class="group">
+
+                <p>Enter Email:</p>
+                <input type="text" name="email" id="email" required>
+            </div>
+            <div class="group">
+                <p>Enter Mobile No:</p>
+                <input type="text" name="mobileNo"  required>
+            </div>
+            <div class="group">
+                <p>Select Gender:</p>
+                <input type="radio" name="gender" value="Male" id="p1"><p>Male</p>
+                <input type="radio" name="gender" value="Female" id="p2"><p>Female</p>
+            </div>
+            <div class="group">
+                <p>Select City:</p>
+                <select name="city" style="width:90%; height:50px; border:1px solid navy; margin-top:10px; border-radius:10px; font-size:15px">
+                    <option value="hmt">Himmatnagar</option>
+                    <option value="idar">Idar</option>
+                    <option value="surat">Surat</option>
+                </select>
+            </div>    
+        </div>
+
+        <!--<button type="submit">Login</button>-->
+        <button type="submit"> save</button>
+        
+    </form>    
+    <form action="{% url 'login' %}">
+    <button type="submit">login</button>
+   </form>
+    <form action="{% url 'show' %}" method="GET" >
+        
+        <button type="submit" style="margin-top:10px">Show</button>
+        
+    </form>
+    <form method="POST" action="{% url 'search'%}">
+        {% csrf_token %}
+
+        <P style='font-size:20px;'>SEARCH NAME:</P>
+        <input type="text" name="search" id="" style="margin-top:0">
+        <button type="submit" style="margin-top:0">search</button>
+    </form>
+    
+   
+</div>
+
+</div>
+    {% if save_info %}
+        <table border=1 cellspacing=0 cellpadding=15 style="width:90%;  text-align:center">
+            <tr style="font-size:1.2rem">
+                <td><b>Name</b></td>
+                <td><b>Email</b></td>
+                <td><b>MobileNo</b></td>
+                <td><b>Gender</b></td>
+                <td><b> City</b></td>
+                <td style="font-size:20px">❌</td>
+                <td style="font-size:20px">✏️</td>
+                
+            </tr>    
+            {% for data in  save_info %}
+            <tr>
+                <td>{{data.name}}</td>
+                <td>{{data.email}}</td>
+                <td>{{data.mobileNo}}</td>
+                <td>{{data.gender}}</td>
+                <td>{{data.city}}</td>
+                <td><a href="{% url 'delete' data.id %}" style="color:red; text-decoration:None">Delete</a></td>
+                <td><a href="{% url 'edit' data.id %}" style="text-decoration:none">Edit</a></td>
+            </tr>
+            
+            {% endfor %}
+        </table>
+    
+    
+    
+    {% endif %}
+    
+</body>
+</html>

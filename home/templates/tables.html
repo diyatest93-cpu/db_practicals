@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        p{
+            color: blue;
+            font-size: 20px;
+        }
+        button{
+            height: 30px;
+            width: 80px;
+            color: white;
+            background-color: blue;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        button:hover{
+            background-color: rgba(0, 0, 255, 0.651);
+        }
+    </style>
+</head>
+<body>
+    <form method="POST">
+        {% csrf_token %}
+        <p>Enter starting value :</p>
+        <input type="text" name="val">
+        <p>Enter Ending value:</p>
+        <input type="text" name="val1"><br><br>
+        
+        <button type="submit">Save</button>
+        
+
+    </form>
+    {% if result %}
+    <div style="border: 1px solid maroon; height: 500px; margin-top: 20px;" >
+    {% for i, j, ans in result %}
+
+        {% ifchanged i %}
+            {% if not forloop.first %}
+                </div>
+            {% endif %}
+            <div style="float: left; margin-left: 40px;">
+            <h3 style="color:maroon">Table of {{ i }}</h3>
+        {% endifchanged %}
+
+        <p style="color: brown; font-size: 20px;">{{ i }} * {{ j }} = {{ ans }}</p>
+
+    {% endfor %}
+{% endif %}
+</div>
+</body>
+</html>

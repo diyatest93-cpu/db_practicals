@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+            background-color:#f6f5ff;
+        }
+    form{
+            margin-top:30px;
+            padding-top:20px;
+            width:50%;
+            margin-left:350px;
+            text-align:center;
+            border-radius:10px;
+            background-color:white;
+            box-shadow: 15px 15px 10px 5px rgba(0,0,0,0.1);
+        }
+        p{
+            margin-top:20px;
+            font-size:1.2rem;
+        }
+        input{
+            width:70%;
+            height:30px;
+        }
+        button{
+            height: 30px;width:80px;
+            background-color:blue;
+            color:white;
+            border:none;
+            border-radius:10px;
+            margin-bottom:10px
+        }   
+        .error{
+            font-size:20px;
+            color:red;
+        } 
+    
+</style>
+<body>
+    <h2>Login page</h2>
+    <div class="error">
+        {% if error %}
+            {{error}}
+        {% endif %}
+    </div>  
+    <form method="POST">
+        {% csrf_token %}
+        <p>Name:</p>
+        <input type="text" name="name" id=""><br><br>
+        <p>Email:</p>
+        <input type="text" name="email" id=""><br><br>
+        <button type="submit">Save</button>
+    </form>
+</body>
+</html>
