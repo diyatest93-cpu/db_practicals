@@ -50,18 +50,23 @@ def search(request):
     return redirect('show')
    
 def login(request):
+    if request.method == "POST":
+        name = request.POST.get('name', '').strip()
+        email = request.POST.get('email', '').strip()
 
-    if request.method== "POST":
-        name=request.POST.get('name')
-        email= request.POST.get('email')
-
-        request.session['name']= request.POST['name']
-    
-        user = save_info.objects.filter(name=name, email=email).first()
+        user = save_info.objects.filter(
+            name__iexact=name,
+            email__iexact=email
+        ).first()
 
         if user:
-            return render(request, 'db_practicals/home1.html', {'name':name})
+            request.session['name'] = user.name
+            return render(request, 'db_practicals/home1.html', {'name': user.name})
         else:
-            return render(request, 'db_practicals/login_page.html', {'error': 'invalid name or email' })
-    return render(request, 'db_practicals/login_page.html')   
+            return render(
+                request,
+                'db_practicals/login_page.html',
+                {'error': 'Invalid name or email'}
+            )
 
+    return render(request, 'db_practicals/login_page.html')
