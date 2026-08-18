@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+
+        p{
+            background-color:navy;
+            font-size:20px;
+            text-align:center;
+            Color:white;
+
+        }
+        .div{
+            margin-left:250px;
+        }
+    </style>    
+</head>
+<body>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <input type="file" name="image">
+        <button type="submit">Upload To</button>
+        
+    </form>
+    <div class="div" style="backgroung-color:black; margin-top:30px ; border:1px solid black; width:500px">
+        {% if uploaded_image %}
+            <img src="{{uploaded_image.image.url}}" alt="noimage" width="500px">
+            <p> {{uploaded_image.name}}</p>
+            <p>size is:{{uploaded_image.size}}</p>
+        {%endif%}    
+
+        {% if messages %}
+            {% for message in messages %}
+                <p>{{message}}</p>
+            {%endfor%}    
+        {%endif%}    
+
+    </div>
+</body>
+</html>

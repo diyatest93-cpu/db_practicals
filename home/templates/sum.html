@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Sum of Five numbers</h2>
+    <form method="POST">
+
+        {%csrf_token%}
+
+        <p>Enter the value of A=<input type="text" name="num1" placeholder="Enter the value " required></p>
+        <p>Enter the value of B=<input type="text" name="num2" placeholder="Enter the value " required></p>
+        <p>Enter the value of C=<input type="text" name="num3" placeholder="Enter the value " required></p>
+        <p>Enter the value of D=<input type="text" name="num4" placeholder="Enter the value " required></p>
+        <p>Enter the value of E=<input type="text" name="num5" placeholder="Enter the value " required></p>
+
+        <button type="submit">Calculate Sum</button>
+
+
+
+    </form>
+
+    {% if result is not None %}
+    <h3>Result:{{result}}<br><br>
+        Grade:{{Grade}}<br><br>
+        Avrage:{{avg}}
+    </h3>
+    {% endif %}
+</body>
+</html>

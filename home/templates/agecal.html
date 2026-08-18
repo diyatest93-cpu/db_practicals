@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+        font-family: Arial, sans-serif;
+        background:#f4f4f4;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        height:100vh;
+    }
+
+    .box{
+        width:350px;
+        background:white;
+        padding:20px;
+        border-radius:10px;
+        box-shadow:0 0 10px rgba(0,0,0,0.2);
+        text-align:center;
+    }
+
+    input{
+        width:90%;
+        padding:10px;
+        margin:10px 0;
+        border:1px solid #ccc;
+        border-radius:5px;
+    }
+
+    button{
+        width:100%;
+        padding:10px;
+        background:#007BFF;
+        color:white;
+        border:none;
+        border-radius:5px;
+        cursor:pointer;
+        font-size:16px;
+    }
+
+    button:hover{
+        background:#0056b3;
+    }
+
+    .result{
+        margin-top:20px;
+        background:#e8f5e9;
+        padding:15px;
+        border-radius:8px;
+        text-align:left;
+    }
+        
+    </style>
+</head>
+<body>
+    <div class="box">
+    <h1>Age Calculator</h1>
+    
+    <form method="POST">
+        {% csrf_token %}
+        <p> Enter your Age:<input type="text " name="age" placeholder="Enter your age" required></p>
+        <button type="submit">Add</button>
+    </form>
+    
+
+    {% if result %}
+
+    <div class="result"></div>
+        
+        <p>Year:{{result.year}}<br></p>
+        <p>{{result.monts}}</p>
+        <p>weeks:{{result.weeks}}</p>
+        <p>days:{{result.days}}</p>
+        <p>hours:{{result.hours}}</p>
+        <p>minutes:{{result.minutes}}</p>
+        <p>seconds:{{result.seconds}}</p>
+    </h3>
+    </div>
+    {% endif %}
+    </div>
+</body>
+</html> 
