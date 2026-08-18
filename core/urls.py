@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from home.views import *
+from db_practicals.views import login as db_login
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -26,8 +27,9 @@ urlpatterns = [
     path('contact/', contact, name="contact"),
     path('about/', about, name="about"),
     path('success_page/', success_page, name="success_page"),
-    path('', index, name='index'),
+    #path('', db_login, name='db_login'),
     path('age/', agecal, name='agecal'),
+    path('login/', login, name='login'),
     path('shopping/', shopping, name='shopping'),
     path('radio/',radiobutton, name='radio'),
     path('checkbox/', checkbox, name='chekbox' ),
@@ -37,12 +39,12 @@ urlpatterns = [
     path('while/', wh_loop, name='whileloop'),
     path('array/', rev_array, name='rev_array'),
     path('reg/', reg_page, name='register'),
-    path('login/',login, name='login'),
+    
     path('home/', home, name='home'),
     path('index/',index, name='index'),
     path('hello/',hello, name='hello'),
     path('cookies/',cookie, name='cookie'),
-    path('db_practicals/', include('db_practicals.urls')),
+    path('', include('db_practicals.urls')),
     # path("api/", include("products.urls")),
 ]
 
